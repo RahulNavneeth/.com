@@ -15,6 +15,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         <html lang="en">
             <head>
                 <link href="https://fonts.cdnfonts.com/css/cmu-serif" rel="stylesheet" />
+                <link rel="icon" href="https://github.com/RahulNavneeth.png" />
             </head>
             <body className={inter.className}>
                 <div className="w-screen h-screen">

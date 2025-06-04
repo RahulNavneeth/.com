@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a {
+	color: blue;
+}
+
+pre.line-numbers {
+  padding: 1.2em;
+  position: relative;
+}
+
+pre {
+	background: blue;
+	color: white;
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}

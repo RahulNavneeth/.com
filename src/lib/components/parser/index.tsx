@@ -12,18 +12,33 @@ export default function parseInline(raw: string) {
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								{domToReact(node.children)}
+								{ // @ts-ignore
+									domToReact(node.children)
+								}
 							</a>
 						)
 
 					case 'b':
-						return <strong>{domToReact(node.children)}</strong>
+						return <strong>
+							{ // @ts-ignore
+								domToReact(node.children)
+							}
+						</strong>
 
 					case 'i':
-						return <em>{domToReact(node.children)}</em>
+						return <em>
+							{ // @ts-ignore
+								domToReact(node.children)
+							}
+						</em>
 
 					case 'strike':
-						return <del>{domToReact(node.children)}</del>
+						return <del>
+							{ // @ts-ignore
+								domToReact(node.children)
+							}
+						</del>
+
 				}
 			}
 			return undefined

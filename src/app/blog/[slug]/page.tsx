@@ -38,7 +38,7 @@ export default function Blog() {
 				return <h3 key={index}>{block.raw}</h3>
 
 			case "para":
-				return <p key={index}>{ParserInline(block.raw)}</p>
+				return <p key={index}>{ParserInline(block.raw ?? "")}</p>
 
 			case "para-it":
 				return <p className="italic" key={index}>{block.raw}</p>
@@ -92,7 +92,7 @@ export default function Blog() {
 	return (
 		<div className="flex flex-col text-lg gap-5 pb-4">
 			{content.map((block, idx) => renderBlock(block, idx))}
-			<Tags tags={content.filter((block) => block.type == "tags")[0].tags} />
+			<Tags tags={content.filter((block) => block.type == "tags")[0].tags ?? []} />
 		</div>
 	)
 }

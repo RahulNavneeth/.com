@@ -1,11 +1,22 @@
-const Blog = () => {
+import BlogIndex from "@/lib/data/blog/index.json"
+
+type BlogIndexType = Array<{
+	title: String,
+	slug: String,
+	date: String
+}>
+
+export default function BlogHome() {
 	return (
-		< div className="w-screen h-screen flex flex-col items-center justify-center" >
-			<div className="bg-gray-50 px-4 py-2 border-black border-[1px] shadow-md">
-				page under construction! until then -&gt; <a href="/" className="underline text-green-700">Go Home</a>
-			</div>
-		</div >
+		<div className="flex flex-col gap-10">
+			{(BlogIndex as BlogIndexType).map((entry, idx) => (
+				<div key={idx}>
+					<div className="font-semibold text-2xl">{entry.date}</div>
+					<a href={"/blog/" + entry.slug} className="text-3xl">
+						<div>{idx + 1}. {entry.title}</div>
+					</a>
+				</div>
+			))}
+		</div>
 	)
 }
-
-export default Blog;

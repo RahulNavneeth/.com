@@ -1,24 +1,98 @@
-import { Code } from "@/lib/components/text";
+"use client"
+
+import { Code, Quote, Tags } from "@/lib/components/text"
+import { useEffect, useState } from "react"
+import { useParams } from "next/navigation"
+import React from "react"
+import { ParserInline } from "@/lib/components"
+
+type BlogBlock = {
+	type: string
+	raw?: string
+	items?: BlogBlock[]
+	url?: string
+	tags?: string[]
+}
 
 export default function Blog() {
-	return (
-		<div className="flex flex-col gap-5 pb-4">
-			<div className="text-5xl">Lorem Ipsum I   : Lorem ipsum dolor sit</div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<Code code={`
-module Main where
+	const { slug } = useParams()
+	const [content, setContent] = useState<BlogBlock[] | null>(null)
 
-main :: IO ()
-main = putStrLn "Yallow" `.trim()}
-				fileName="Main.hs"
-			/>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<img src="https://placehold.co/1000x500?text=Smoothie" alt="placeholder-image" />
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<div className="text-2xl font-semibold">Section I: Lorem ipsum dolar?</div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	useEffect(() => {
+		import(`@/lib/data/blog/${slug}`)
+			.then((mod) => setContent(mod.default || mod))
+			.catch((err) => console.error("Failed to load blog content:", err))
+	}, [slug])
+
+	if (!content) return <div className="w-full h-full flex flex-col items-center justify-center">Loading...</div>
+
+	const renderBlock = (block: BlogBlock, index: number): JSX.Element | null => {
+		switch (block.type) {
+			case "title":
+				return <h1 key={index}>{block.raw}</h1>
+
+			case "section":
+				return <h2 key={index}>{block.raw}</h2>
+
+			case "sub-section":
+				return <h3 key={index}>{block.raw}</h3>
+
+			case "para":
+				return <p key={index}>{ParserInline(block.raw)}</p>
+
+			case "para-it":
+				return <p className="italic" key={index}>{block.raw}</p>
+
+			case "quote":
+				return (
+					<p key={index}>
+						<Quote quote={block.raw ?? ""} />
+					</p>
+				)
+
+			case "code":
+				return (
+					<Code
+						key={index}
+						language="haskell"
+						code={block.raw?.trim() || ""}
+						fileName="Main.hs"
+					/>
+				)
+
+			case "img":
+				return <img key={index} src={block.url} alt="blog-image" />
+
+			case "items":
+				return (
+					<div key={index} className="flex flex-wrap gap-x-2 gap-y-1">
+						{(block.items ?? []).map((item, i) => {
+							if (item.type === "para")
+								return (
+									<span key={i} className="inline">
+										{ParserInline(item.raw ?? "")}
+									</span>
+								)
+							if (item.type === "quote")
+								return (
+									<span key={i} className="inline-block">
+										<Quote quote={item.raw ?? ""} />
+									</span>
+								)
+							return null
+						})}
+					</div>
+				)
+
+			default:
+				return null
+		}
+	}
+
+	return (
+		<div className="flex flex-col text-lg gap-5 pb-4">
+			{content.map((block, idx) => renderBlock(block, idx))}
+			<Tags tags={content.filter((block) => block.type == "tags")[0].tags} />
 		</div>
 	)
-};
+}

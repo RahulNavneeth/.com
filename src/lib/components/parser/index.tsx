@@ -50,18 +50,18 @@ export default function parseInline(
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								{domToReact(node.children, {})}
+								{domToReact(node.children as DOMNode[], {})}
 							</a>
 						)
 
 					case "b":
-						return <strong>{domToReact(node.children, {})}</strong>
+						return <strong>{domToReact(node.children as DOMNode[], {})}</strong>
 
 					case "i":
-						return <em>{domToReact(node.children, {})}</em>
+						return <em>{domToReact(node.children as DOMNode[], {})}</em>
 
 					case "strike":
-						return <del>{domToReact(node.children, {})}</del>
+						return <del>{domToReact(node.children as DOMNode[], {})}</del>
 				}
 			}
 			return undefined

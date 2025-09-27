@@ -1,6 +1,6 @@
 import { ArrRight } from "../text"
 import Nav from "./Nav"
-import { GithubIcon, MailIcon, CoffeeIcon } from "lucide-react"
+import { GithubIcon, MailIcon, CoffeeIcon, RssIcon } from "lucide-react"
 
 export default function Header() {
 	return (
@@ -12,6 +12,7 @@ export default function Header() {
 					{/*<div className="flex-row flex gap-3">AhHa Ahah aHah ahah AhHa <ArrRight /> <a href="https://www.youtube.com/watch?v=JLAtVgtevpw&pp=ygUWc2FzaWt1bWFyIGxhdWdoIDNob3Vycw%3D%3D">(^_^)</a> </div>*/}
 					<div className="flex-row flex gap-3">Jam with me<ArrRight /> <a href="https://music.apple.com/profile/rahulmnavneeth">Music</a> </div>
 					<div className="flex flex-row gap-6">
+						<a className="hover:bg-[#0000FF] hover:text-white rounded-full p-1" href="/rss.xml"><RssIcon size={15} /></a>
 						<a className="hover:bg-[#0000FF] hover:text-white rounded-full p-1" href="https://github.com/RahulNavneeth"><GithubIcon size={15} /></a>
 						<a className="hover:bg-[#0000FF] hover:text-white rounded-full p-1" href="mailto:rahulmnaveeth@gmail.com"><MailIcon size={15} /></a>
 						<a className="hover:bg-[#0000FF] hover:text-white rounded-full p-1" href="https://coff.ee/rahulmnavn6"><CoffeeIcon size={15} /></a>

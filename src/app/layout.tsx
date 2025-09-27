@@ -23,6 +23,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 		<html lang="en">
 			<head>
 				<link rel="icon" href="https://github.com/RahulNavneeth.png" />
+				<link rel="alternate" type="application/rss+xml" title="Rahul M. Navneeth - Blog RSS" href="/rss.xml" />
 			</head>
 			<body className={`${crimson.className} ${iosevka.variable}`}>
 				<div className="w-full h-screen flex flex-col items-center">

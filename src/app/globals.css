@@ -20,6 +20,7 @@ html {
     overflow: scroll;
     overflow-x: hidden;
 }
+
 ::-webkit-scrollbar {
     width: 0;
     background: transparent;
@@ -44,4 +45,24 @@ h3 {
     font-size: 1.2rem;
     line-height: 1rem;
 	font-weight: 600;
+}
+
+code, pre {
+  	font-family: var(--font-iosevka);
+}
+
+td, tr {
+	border: darkblue solid 1px;
+	background: blue;
+	color: white;
+}
+
+tr:hover {
+	background: darkblue;
+}
+
+th {
+	border: darkblue solid 1px;
+	background: #0202dc;
+	color: white;
 }

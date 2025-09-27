@@ -8,7 +8,7 @@ type BlogIndexType = Array<{
 
 export default function BlogHome() {
 	return (
-		<div className="flex flex-col gap-10">
+		<div className="flex flex-col gap-8">
 			{(BlogIndex as BlogIndexType).map((entry, idx) => (
 				<div key={idx}>
 					<div className="font-semibold text-2xl">{entry.date}</div>

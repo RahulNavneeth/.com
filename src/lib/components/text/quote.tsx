@@ -4,7 +4,7 @@ export default function Quote({ quote, name }: { quote: string, name?: string })
 			<span style={{ width: name ? "100%" : "fit" }} className="italic">
 				&quot;{quote}&quot;
 			</span>
-			{name && <div className="w-full text-right font-semibold">~ {name}</div>}
+			{name && name != "" && <div className="w-full text-right font-semibold">~ {name}</div>}
 		</span>
 	)
 }

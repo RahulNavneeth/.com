@@ -1,0 +1,14 @@
+[
+  {
+    "type": "title",
+    "raw": "Love?!"
+  },
+  {
+    "type": "sub-section",
+    "raw": "lorem"
+  },
+  {
+	"type": "tags",
+	"tags": ["affective-science"]
+  }
+]

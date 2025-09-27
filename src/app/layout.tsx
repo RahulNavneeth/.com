@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 import { Crimson_Text } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/lib/components";
+import localFont from "next/font/local";
+
+const iosevka = localFont({
+  src: [
+    { path: "../../public/fonts/Iosevka-Medium.ttf", weight: "400" },
+  ],
+  variable: "--font-iosevka",
+});
 
 const crimson = Crimson_Text({ subsets: ['latin'], weight: ["400", "600", "700"] });
 
@@ -14,10 +22,9 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 	return (
 		<html lang="en">
 			<head>
-				<link href="https://fonts.cdnfonts.com/css/cmu-serif" rel="stylesheet" />
 				<link rel="icon" href="https://github.com/RahulNavneeth.png" />
 			</head>
-			<body className={crimson.className}>
+			<body className={`${crimson.className} ${iosevka.variable}`}>
 				<div className="w-full h-screen flex flex-col items-center">
 					<div className="w-full md:w-1/2 h-screen border-black bg-white ">
 						<Header />

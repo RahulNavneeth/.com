@@ -1,0 +1,10 @@
+[
+	{
+		"type": "books",
+		"name": "How to Hold Someone in Your Heart - Mizuki Tsujimura",
+		"img": "https://cdn.penguin.co.uk/dam-assets/books/9781529911435/9781529911435-jacket-large.jpg",
+		"slug": "how-to-hold-someone-in-your-heart",
+		"rating": 4,
+		"popup": ["img"]
+	}
+]

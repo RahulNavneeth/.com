@@ -4,6 +4,7 @@ export default function Nav() {
 			<Index name="Home" link="/" />
 			<Index name="Blog" link="/blog" />
 			<Index name="Resource" link="/resource" />
+			<Index name="(Things lately)" link="/things-lately" />
 		</div>
 	)
 };

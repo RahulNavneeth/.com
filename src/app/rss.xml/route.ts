@@ -4,12 +4,15 @@ import path from 'path'
 
 export async function GET() {
   const baseUrl = 'https://rahulmnavneeth.in'
-  const blogIndexPath = path.join(process.cwd(), 'src/lib/data/blog/index.json')
-  const blogIndex = JSON.parse(fs.readFileSync(blogIndexPath, 'utf8'))
+  const thingsLatelyPath = path.join(process.cwd(), 'src/lib/data/things-lately/index.json')
+  const thingsLatelyIndex = JSON.parse(fs.readFileSync(thingsLatelyPath, 'utf8'))
+  
+  // Filter only blog posts
+  const blogPosts = thingsLatelyIndex.filter((item: any) => item.type === 'blog')
   
   const items = await Promise.all(
-    blogIndex.map(async (post: any) => {
-      const postPath = path.join(process.cwd(), 'src/lib/data/blog', post.slug, 'index.json')
+    blogPosts.map(async (post: any) => {
+      const postPath = path.join(process.cwd(), 'src/lib/data/things-lately', post.slug, 'index.json')
       const postContent = JSON.parse(fs.readFileSync(postPath, 'utf8'))
       
       const description = postContent.find((item: any) => item.type === 'para')?.raw || ''

@@ -126,9 +126,18 @@ export default function ReviewsHome() {
 													<h3 style={{color: "blue"}} className="font-medium text-3xl mb-2">{review.title}</h3>
 												)}
 												{review.description && review.popup.includes('description') && (
-													<p style={{color: "blue"}} className="text-lg mb-3 line-clamp-3">
+													<p style={{color: "black"}} className="text-lg mb-3 line-clamp-3">
 														{review.description}
 													</p>
+												)}
+												{review.link && review.input && review.popup.includes('link') && (
+													<a 
+														href={review.link}
+														target="_blank"
+														rel="noopener noreferrer"
+													>
+														{review.input} →
+													</a>
 												)}
 												{review.rating && review.popup.includes('rating') && (
 													<div className="flex items-center gap-2 mb-3">
@@ -139,15 +148,6 @@ export default function ReviewsHome() {
 															{review.rating}/5
 														</span>
 													</div>
-												)}
-												{review.link && review.input && review.popup.includes('link') && (
-													<a 
-														href={review.link}
-														target="_blank"
-														rel="noopener noreferrer"
-													>
-														{review.input} →
-													</a>
 												)}
 											</div>
 										)}

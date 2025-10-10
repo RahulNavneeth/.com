@@ -1,10 +1,33 @@
 [
 	{
-		"type": "books",
-		"name": "How to Hold Someone in Your Heart - Mizuki Tsujimura",
+		"type": "book",
+		"title": "The Subtle Art of Not Giving a F*ck - Mark Manson",
+		"img": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1465761302i/28257707.jpg",
+		"slug": "the-subtle-art-of-not-giving-a-f*ck",
+		"date": "10/10/25",
+		"description": "I hate to say this, but as mainstream as this book is, it still has some valuable insights that often go overlooked. When Mark is right, he's really right - and honestly, this book is underrated for what it actually deserves credit for.",
+		"rating": 4,
+		"popup": ["img", "description", "rating"]
+	},
+	{
+		"type": "book",
+		"title": "How to Hold Someone in Your Heart - Mizuki Tsujimura",
 		"img": "https://cdn.penguin.co.uk/dam-assets/books/9781529911435/9781529911435-jacket-large.jpg",
 		"slug": "how-to-hold-someone-in-your-heart",
+		"date": "05/10/25",
 		"rating": 4,
 		"popup": ["img"]
+	},
+	{
+		"type": "blog",
+		"title": "The concept of getting \"vendor-locked\"!",
+		"slug": "the-concept-of-getting-vendor-locked",
+		"date": "27/09/25"
+	},
+	{
+		"type": "blog",
+		"title": "New blogger in the house!!",
+		"slug": "new-blogger-in-the-house",
+		"date": "06/06/25"
 	}
 ]

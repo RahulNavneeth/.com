@@ -2,8 +2,6 @@ export default function Nav() {
 	return (
 		<div className="flex flex-row md:justify-start justify-center gap-6 py-4 border-y-[1px] border-gray-200">
 			<Index name="Home" link="/" />
-			<Index name="Blog" link="/blog" />
-			<Index name="Resource" link="/resource" />
 			<Index name="(Things lately)" link="/things-lately" />
 		</div>
 	)

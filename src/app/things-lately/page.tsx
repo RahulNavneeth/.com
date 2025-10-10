@@ -1,11 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import { Filter, SortAsc } from "lucide-react"
 import ReviewsIndex from "@/lib/data/things-lately/index.json"
 
 type ReviewType = {
 	type: string
-	name: string
+	title: string
 	img?: string
 	description?: string
 	rating?: number
@@ -13,6 +14,7 @@ type ReviewType = {
 	link?: string
 	input?: string
 	popup?: string[]
+	date?: string
 }
 
 type ReviewsByCategory = {
@@ -20,14 +22,31 @@ type ReviewsByCategory = {
 }
 
 export default function ReviewsHome() {
-	const [hoveredItem, setHoveredItem] = useState<number | null>(null)
+	const [hoveredItem, setHoveredItem] = useState<string | null>(null)
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+	const [selectedFilter, setSelectedFilter] = useState<string>('all')
+	const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest')
 
-	const reviewsByCategory = (ReviewsIndex as ReviewType[]).reduce((acc: ReviewsByCategory, review) => {
-		if (!acc[review.type]) {
-			acc[review.type] = []
+	// Get unique types for filter options
+	const availableTypes = Array.from(new Set((ReviewsIndex as ReviewType[]).map(item => item.type)))
+	
+	const allItems = (ReviewsIndex as ReviewType[])
+		.filter(item => selectedFilter === 'all' || item.type === selectedFilter)
+		.sort((a, b) => {
+			if (!a.date || !b.date) return 0
+			const dateA = new Date(a.date.split('/').reverse().join('-'))
+			const dateB = new Date(b.date.split('/').reverse().join('-'))
+			return sortOrder === 'newest' 
+				? dateB.getTime() - dateA.getTime()
+				: dateA.getTime() - dateB.getTime()
+		})
+
+	const itemsByDate = allItems.reduce((acc: { [date: string]: ReviewType[] }, item) => {
+		const date = item.date || 'No Date'
+		if (!acc[date]) {
+			acc[date] = []
 		}
-		acc[review.type].push(review)
+		acc[date].push(item)
 		return acc
 	}, {})
 
@@ -45,49 +64,69 @@ export default function ReviewsHome() {
 
 	return (
 		<div className="flex flex-col gap-8">
-			{Object.entries(reviewsByCategory).map(([category, reviews]) => (
-				<div key={category} className="mb-12">
-					<h2 className="text-2xl font-semibold">
-						{capitalizeFirst(category)}
+			{Object.entries(itemsByDate).map(([date, items]) => (
+				<div key={date} className="">
+					<h2 className="text-2xl font-semibold mb-4">
+						{date}
 					</h2>
 					<div className="grid grid-row-1 md:grid-row-2 lg:grid-row-3 mt-2">
-						{reviews.map((review, idx) => (
+						{items.map((review, idx) => {
+							const uniqueId = `${date}-${review.slug}`
+							return (
 							<div key={idx} className="relative w-full">
-								<h3 style={{color: "blue"}} className="font-medium text-3xl mb-2 w-full cursor-pointer relative" 
-								    onMouseEnter={(e) => {
-								    	setHoveredItem(idx)
-								    	setMousePosition({ x: e.clientX + 10, y: e.clientY + 10 })
-								    }}
-								    onMouseMove={(e) => {
-								    	if (hoveredItem === idx) {
-								    		setMousePosition({ x: e.clientX + 10, y: e.clientY + 10 })
-								    	}
-								    }}
-								    onMouseLeave={() => {
-								    	setHoveredItem(null)
-								    }}>
-									{review.name}
-								</h3>
-								{hoveredItem === idx && (
+								{review.type === 'blog' ? (
+									<h3 className="font-medium text-3xl mb-2 w-full">
+										<a href={`/blog/${review.slug}`} style={{color: "blue"}} className="hover:underline cursor-pointer">
+											{review.title}
+										</a>
+										<span className="text-black"> :: {review.type}</span>
+									</h3>
+								) : (
+									<h3 className="font-medium text-3xl mb-2 w-full cursor-pointer relative" 
+									    onMouseEnter={(e) => {
+									    	setHoveredItem(uniqueId)
+									    	setMousePosition({ x: e.clientX + 10, y: e.clientY + 10 })
+									    }}
+									    onMouseMove={(e) => {
+									    	if (hoveredItem === uniqueId) {
+									    		setMousePosition({ x: e.clientX + 10, y: e.clientY + 10 })
+									    	}
+									    }}
+									    onMouseLeave={() => {
+									    	setHoveredItem(null)
+									    }}
+									    onClick={(e) => {
+									    	if (hoveredItem === uniqueId) {
+									    		setHoveredItem(null)
+									    	} else {
+									    		setHoveredItem(uniqueId)
+									    		setMousePosition({ x: e.clientX + 10, y: e.clientY + 10 })
+									    	}
+									    }}>
+										<span style={{color: "blue"}}>{review.title}</span>
+										<span className="text-black"> :: {review.type}</span>
+									</h3>
+								)}
+								{review.type !== 'blog' && hoveredItem === uniqueId && (
 									<div className={`bg-white border border-gray-200 p-4 z-10 ${review.popup && review.popup.length === 1 && review.popup.includes('img') ? 'w-auto fixed' : 'w-full absolute top-0 left-0'} flex justify-between`} 
 									     style={review.popup && review.popup.length === 1 && review.popup.includes('img') ? { left: mousePosition.x + 'px', top: mousePosition.y + 'px' } : {}}
-									     onMouseEnter={() => setHoveredItem(idx)}
-									     onMouseLeave={() => setHoveredItem(null)}>
+								     onMouseEnter={() => setHoveredItem(uniqueId)}
+								     onMouseLeave={() => setHoveredItem(null)}>
 										{review.img && review.popup?.includes('img') && (
 											<img 
 												src={review.img} 
-												alt={review.name}
+												alt={review.title}
 												style={{ background: "blue", color: "white" }}
-												className={`h-48 object-contain ${review.popup.length === 1 ? 'w-auto' : 'w-1/3 mr-4'}`}
+												className={`h-48 object-contain ${review.popup.length === 1 ? 'w-auto' : 'w-fit mr-4'}`}
 											/>
 										)}
 										{review.popup && review.popup.length > 1 && (
 											<div className="flex-1">
 												{review.popup.includes('name') && (
-													<h3 style={{color: "blue"}} className="font-medium text-3xl mb-2">{review.name}</h3>
+													<h3 style={{color: "blue"}} className="font-medium text-3xl mb-2">{review.title}</h3>
 												)}
 												{review.description && review.popup.includes('description') && (
-													<p className="text-gray-600 text-sm mb-3 line-clamp-3">
+													<p style={{color: "blue"}} className="text-lg mb-3 line-clamp-3">
 														{review.description}
 													</p>
 												)}
@@ -114,8 +153,9 @@ export default function ReviewsHome() {
 										)}
 									</div>
 								)}
-							</div>
-						))}
+								</div>
+							)
+						})}
 					</div>
 				</div>
 			))}

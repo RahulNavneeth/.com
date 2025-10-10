@@ -1,6 +1,6 @@
 import { ArrRight } from "../text"
 import Nav from "./Nav"
-import { GithubIcon, MailIcon, CoffeeIcon, RssIcon } from "lucide-react"
+import { GithubIcon, MailIcon, CoffeeIcon, RssIcon, BookOpenIcon } from "lucide-react"
 
 export default function Header() {
 	return (
@@ -16,6 +16,7 @@ export default function Header() {
 						<a className="hover:bg-[#0000FF] hover:text-white rounded-full p-1" href="https://github.com/RahulNavneeth"><GithubIcon size={15} /></a>
 						<a className="hover:bg-[#0000FF] hover:text-white rounded-full p-1" href="mailto:rahulmnaveeth@gmail.com"><MailIcon size={15} /></a>
 						<a className="hover:bg-[#0000FF] hover:text-white rounded-full p-1" href="https://coff.ee/rahulmnavn6"><CoffeeIcon size={15} /></a>
+						<a className="hover:bg-[#0000FF] hover:text-white rounded-full p-1" href="https://www.goodreads.com/user/show/194384406"><BookOpenIcon size={15} /></a>
 					</div>
 				</div>
 			</div>

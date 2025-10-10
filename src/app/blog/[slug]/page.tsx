@@ -27,7 +27,7 @@ export default function Blog() {
 	const [content, setContent] = useState<BlogBlock[] | null>(null)
 
 	useEffect(() => {
-		import(`@/lib/data/blog/${slug}`)
+		import(`@/lib/data/things-lately/${slug}`)
 			.then((mod) => setContent(mod.default || mod))
 			.catch((err) => console.error("Failed to load blog content:", err))
 	}, [slug])

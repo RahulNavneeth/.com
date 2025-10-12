@@ -1,6 +1,16 @@
 [
 	{
 		"type": "book",
+		"title": "Paper Heart - Cecelia Ahern",
+		"img": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1755635827l/224055418.jpg",
+		"slug": "paper-heart-cecelia-ahern",
+		"date": "12/10/25",
+		"description": "Definitely my 'awww'-certified book. The satisfaction & adrenaline towards the end, though 😮‍💨",
+		"rating": 4,
+		"popup": ["img", "description"]
+	},
+	{
+		"type": "book",
 		"title": "The Subtle Art of Not Giving a F*ck - Mark Manson",
 		"img": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1465761302i/28257707.jpg",
 		"slug": "the-subtle-art-of-not-giving-a-f*ck",

@@ -1,6 +1,15 @@
 [
 	{
 		"type": "book",
+		"title": "Amma - Perumal Murugan",
+		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1575474109i/49092851.jpg",
+		"slug": "amma-perumal-murugan",
+		"date": "03/11/25",
+		"rating": 4,
+		"popup": ["img"]
+	},
+	{
+		"type": "book",
 		"title": "Paper Heart - Cecelia Ahern",
 		"img": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1755635827l/224055418.jpg",
 		"slug": "paper-heart-cecelia-ahern",

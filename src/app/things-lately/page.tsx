@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Filter, SortAsc } from "lucide-react"
 import ReviewsIndex from "@/lib/data/things-lately/index.json"
+import { escape } from "he";
 
 type ReviewType = {
 	type: string
@@ -57,6 +58,14 @@ export default function ReviewsHome() {
 			</span>
 		))
 	}
+
+	const formatDescription = (str: string) => {
+	  	let escaped = escape(str);
+		escaped = escaped.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+		escaped = escaped.replace(/\n/g, "<br />");
+	  	return escaped;
+	}
+
 
 	const capitalizeFirst = (str: string) => {
 		return str.charAt(0).toUpperCase() + str.slice(1)
@@ -125,10 +134,12 @@ export default function ReviewsHome() {
 												{review.popup.includes('name') && (
 													<h3 style={{color: "blue"}} className="font-medium text-3xl mb-2">{review.title}</h3>
 												)}
-												{review.description && review.popup.includes('description') && (
-													<p style={{color: "black"}} className="text-lg mb-3 line-clamp-3">
-														{review.description}
-													</p>
+												{review.description && review.popup.includes("description") && (
+												  	<p
+												  	  	style={{ color: "black" }}
+												  	  	className="text-lg mb-3"
+												  	  	dangerouslySetInnerHTML={{ __html: formatDescription(review.description) }}
+												  	/>
 												)}
 												{review.link && review.input && review.popup.includes('link') && (
 													<a 

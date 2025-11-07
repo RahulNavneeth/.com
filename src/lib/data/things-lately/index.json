@@ -1,6 +1,16 @@
 [
 	{
 		"type": "book",
+		"title": "People We Meet on Vacation - Emily Henry",
+		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1748450140i/54985743.jpg",
+		"slug": "people-we-meet-on-vacation-emily-henry",
+		"date": "08/11/25",
+		"description": "**Notes to self:**\n1. Take the vacation, meet strangers who might become stories, and step into the unknown without fear.\n2. Find my Poppy who feels like home and adventure at once.\n3. Love her the way Poppy loves Alex.",
+		"rating": 5,
+		"popup": ["img", "description"]
+	},
+	{
+		"type": "book",
 		"title": "Amma - Perumal Murugan",
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1575474109i/49092851.jpg",
 		"slug": "amma-perumal-murugan",

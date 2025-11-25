@@ -1,6 +1,16 @@
 [
 	{
 		"type": "book",
+		"title": "Normal People - Sally Rooney",
+		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1571423190i/41057294.jpg",
+		"slug": "normal-people-sally-rooney",
+		"date": "26/11/25",
+		"description": "Their relationship is 100% something now. Marianne being called his girlfriend after all those phases of uncertainty - was it nothing? Something? Definitely something? But also nothing? yh, it was worth the wait. The separations and the phases of life they faced individually and together really changed them. As the narrator says, 'People can really change one another.' And in the end, when they are finally comfortable showing they are explicitly in each other's lives, they’ve overcome the very thing that had created a wall between them. Pretty rich character development I would say.",
+		"rating": 5,
+		"popup": ["img", "description"]
+	},
+	{
+		"type": "book",
 		"title": "People We Meet on Vacation - Emily Henry",
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1748450140i/54985743.jpg",
 		"slug": "people-we-meet-on-vacation-emily-henry",

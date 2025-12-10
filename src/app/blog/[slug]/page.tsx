@@ -46,13 +46,16 @@ export default function Blog() {
 	const refTerms = refBlock?.ref?.map((item) => item.term) ?? []
 
 	const renderBlock = (block: BlogBlock, index: number): JSX.Element | null => {
+		const nextBlock = content[index + 1]
+		const isSubSectionFollowedByCode = block.type === "sub-section" && nextBlock?.type === "code"
+		
 		switch (block.type) {
 			case "title":
 				return <h1 key={index}>{block.raw}</h1>
 			case "section":
 				return <h2 key={index}>{block.raw}</h2>
 			case "sub-section":
-				return <h3 key={index}>{block.raw}</h3>
+				return <h3 key={index} className={`font-black ${isSubSectionFollowedByCode ? "mb-1" : ""}`}>{block.raw}</h3>
 			case "para":
 				return <p key={index}>{ParserInline(block.raw ?? "", refTerms)}</p>
 			case "para-it":
@@ -78,13 +81,16 @@ export default function Blog() {
 					</div>
 				)
 			case "code":
+				const prevBlock = content[index - 1]
+				const isCodeAfterSubSection = prevBlock?.type === "sub-section"
 				return (
-					<Code
-						key={index}
-						language={block.lang ?? "plaintext"}
-						code={block.raw?.trim() || ""}
-						fileName={block.filename}
-					/>
+					<div key={index} className={isCodeAfterSubSection ? "-mt-4" : ""}>
+						<Code
+							language={block.lang ?? "plaintext"}
+							code={block.raw?.trim() || ""}
+							fileName={block.filename}
+						/>
+					</div>
 				)
 			case "img":
 				return (

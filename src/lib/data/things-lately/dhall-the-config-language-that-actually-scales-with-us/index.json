@@ -1,0 +1,342 @@
+[
+  {
+    "type": "title",
+    "raw": "Dhall: The Config Language That Actually Scales With Us"
+  },
+  {
+    "type": "para-it",
+    "raw": "This blog is part of the <a href=\"https://adventar.org/calendars/11946\">Advent of MoneyForward for December 13, 2025</a>"
+  },
+  {
+    "type": "para",
+    "raw": "Over the past couple of years, I've written configs in almost every format we developers get thrown at: JSON, YAML, TOML, INI…. Yes, It gets the job done - until the day it doesn't."
+  },
+  {
+    "type": "para",
+    "raw": "Some configs grow sideways (dev/staging/prod duplication), some grow upwards (too many nested keys), and some grow into a full-blown hydra where a small change breaks a completely unrelated system."
+  },
+  {
+    "type": "para",
+    "raw": "That's usually the moment we say to ourself, \"I should turn this into code.\""
+  },
+  {
+    "type": "para",
+    "raw": "And that's where Dhall quietly walks onto the stage."
+  },
+  {
+    "type": "section",
+    "raw": "What is Dhall?"
+  },
+  {
+    "type": "para",
+    "raw": "Dhall is a <strong>typed, pure, programmable configuration language</strong>."
+  },
+  {
+    "type": "para",
+    "raw": "It's basically what YAML would look like if it went to therapy, got its life together, and learned to say \"no\"."
+  },
+  {
+    "type": "para",
+    "raw": "The most important part: Dhall intentionally avoids Turing-completeness, so we don't accidentally create a config that runs forever or build Skynet."
+  },
+  {
+    "type": "section",
+    "raw": "Why Dhall Matters"
+  },
+  {
+    "type": "sub-section",
+    "raw": "1. It eliminates duplication."
+  },
+  {
+    "type": "para",
+    "raw": "Unlike YAML or JSON, Dhall gives us:"
+  },
+  {
+    "type": "para",
+    "raw": "• functions<br/>• let-bindings<br/>• imports<br/>• strong typing"
+  },
+  {
+    "type": "para",
+    "raw": "Which means we define something <strong>once</strong> and reuse it everywhere."
+  },
+  {
+    "type": "sub-section",
+    "raw": "2. Type safety we can trust"
+  },
+  {
+    "type": "para",
+    "raw": "Dhall has a real type system."
+  },
+  {
+    "type": "para",
+    "raw": "If our config structure changes, Dhall catches it before our app boots."
+  },
+  {
+    "type": "sub-section",
+    "raw": "3. Completely deterministic"
+  },
+  {
+    "type": "para",
+    "raw": "Same input → same output."
+  },
+  {
+    "type": "para",
+    "raw": "No surprises."
+  },
+  {
+    "type": "sub-section",
+    "raw": "4. Converts to JSON/YAML/TOML..."
+  },
+  {
+    "type": "para",
+    "raw": "Apps don't need to understand Dhall."
+  },
+  {
+    "type": "para",
+    "raw": "We just compile the Dhall into whatever format our stack already supports."
+  },
+  {
+    "type": "para",
+    "raw": "So we get the benefits without rewriting our entire ecosystem."
+  },
+  {
+    "type": "section",
+    "raw": "Real World Dhall"
+  },
+  {
+    "type": "para",
+    "raw": "Dhall isn't a toy language. It's quietly powering config-heavy systems in places like:"
+  },
+  {
+    "type": "para",
+    "raw": "<strong>Infrastructure-as-Code</strong><br/>Teams can use Dhall to generate Kubernetes YAML, Terraform manifests, CI/CD pipelines, etc. (Kubernetes especially benefits because YAML hell is real.)"
+  },
+  {
+    "type": "para",
+    "raw": "<strong>Nix ecosystem</strong><br/>Dhall is used to generate reproducible system configs and package definitions."
+  },
+  {
+    "type": "para",
+    "raw": "<strong>Haskell services</strong><br/>Strong typing + Dhall = smooth integration."
+  },
+  {
+    "type": "para",
+    "raw": "<strong>Large polyglot backend systems</strong><br/>Where the same config must be reused by multiple services with different formats."
+  },
+  {
+    "type": "para",
+    "raw": "In app development, Dhall acts as the <strong>\"source of truth\" for environment and service configs</strong>, and the app consumes the generated JSON or environment files."
+  },
+  {
+    "type": "section",
+    "raw": "A Practical Example: App Config (Without Pain)"
+  },
+  {
+    "type": "sub-section",
+    "raw": "Traditional YAML"
+  },
+  {
+    "type": "para",
+    "raw": "We maintain 3 files:"
+  },
+  {
+    "type": "code",
+    "lang": "plaintext",
+    "raw": "config-dev.yaml\nconfig-staging.yaml\nconfig-prod.yaml",
+    "filename": ""
+  },
+  {
+    "type": "para",
+    "raw": "With 80% of content duplicated across them."
+  },
+  {
+    "type": "sub-section",
+    "raw": "Dhall version"
+  },
+  {
+    "type": "sub-section",
+    "raw": "1. Define a shared schema"
+  },
+  {
+    "type": "code",
+    "lang": "dhall",
+    "raw": "let Config = {\n  databaseUrl : Text,\n  logLevel : Text,\n  port : Natural\n}",
+    "filename": ""
+  },
+  {
+    "type": "sub-section",
+    "raw": "2. Create a function to build environments"
+  },
+  {
+    "type": "code",
+    "lang": "dhall",
+    "raw": "let mkConfig = \\(env : Text) ->\n  { databaseUrl = \"postgres://\" ++ env ++ \".db.internal\"\n  , logLevel = if env == \"prod\" then \"warn\" else \"debug\"\n  , port = 8080\n  }",
+    "filename": ""
+  },
+  {
+    "type": "sub-section",
+    "raw": "3. Generate each environment"
+  },
+  {
+    "type": "code",
+    "lang": "dhall",
+    "raw": "let dev = mkConfig \"dev\"\nlet staging = mkConfig \"staging\"\nlet prod = mkConfig \"prod\"\n\nin { dev = dev, staging = staging, prod = prod }",
+    "filename": ""
+  },
+  {
+    "type": "sub-section",
+    "raw": "4. Convert to JSON"
+  },
+  {
+    "type": "code",
+    "lang": "bash",
+    "raw": "dhall-to-json <<< config.dhall > config.json",
+    "filename": ""
+  },
+  {
+    "type": "para",
+    "raw": "We now have a fully consistent, validated, deduplicated config system for all environments — with about only 10% of the original headache."
+  },
+  {
+    "type": "section",
+    "raw": "Reducing Workload: How Dhall Saves Time"
+  },
+  {
+    "type": "sub-section",
+    "raw": "1. Dev/staging/prod drift disappears"
+  },
+  {
+    "type": "para",
+    "raw": "Because environments become <i>data</i>, not <i>files</i>."
+  },
+  {
+    "type": "sub-section",
+    "raw": "2. Define once, reuse everywhere"
+  },
+  {
+    "type": "para",
+    "raw": "We can stop rewriting:"
+  },
+  {
+    "type": "para",
+    "raw": "• port numbers<br/>• service lists<br/>• custom resource blocks<br/>• IAM roles<br/>• environment overrides"
+  },
+  {
+    "type": "para",
+    "raw": "One change → all configs regenerate automatically."
+  },
+  {
+    "type": "sub-section",
+    "raw": "3. Validation happens before deployment"
+  },
+  {
+    "type": "para",
+    "raw": "Dhall won't compile if:"
+  },
+  {
+    "type": "para",
+    "raw": "• a type changes<br/>• a field is missing<br/>• a function expects a different structure"
+  },
+  {
+    "type": "para",
+    "raw": "This alone saves hours of debugging \"why is prod broken?\""
+  },
+  {
+    "type": "section",
+    "raw": "Is Dhall Efficient?"
+  },
+  {
+    "type": "para",
+    "raw": "Yes."
+  },
+  {
+    "type": "para",
+    "raw": "Because Dhall isn't used at runtime — only at <strong>config generation time</strong>."
+  },
+  {
+    "type": "para",
+    "raw": "Our app still loads plain JSON/YAML/TOML."
+  },
+  {
+    "type": "para",
+    "raw": "So performance is exactly what we're already used to."
+  },
+  {
+    "type": "para",
+    "raw": "Dhall sits \"outside\" the application, like:"
+  },
+  {
+    "type": "code",
+    "lang": "plaintext",
+    "raw": "Dhall → JSON/YAML/TOML → App boot → Live system",
+    "filename": ""
+  },
+  {
+    "type": "para",
+    "raw": "Zero runtime overhead."
+  },
+  {
+    "type": "para",
+    "raw": "We can put Dhall in our CI pipeline and still be fine."
+  },
+  {
+    "type": "section",
+    "raw": "Will Dhall Replace All Configs?"
+  },
+  {
+    "type": "para",
+    "raw": "Honestly? No."
+  },
+  {
+    "type": "para",
+    "raw": "And that's fine."
+  },
+  {
+    "type": "para",
+    "raw": "There will always be projects where:"
+  },
+  {
+    "type": "para",
+    "raw": "• plain JSON is enough<br/>• YAML is required by the tooling<br/>• the team doesn't want to learn a DSL"
+  },
+  {
+    "type": "para",
+    "raw": "But Dhall will absolutely replace configs in:"
+  },
+  {
+    "type": "para",
+    "raw": "• large infra setups<br/>• big backend systems<br/>• multi-environment deployments<br/>• organisations tired of YAML-induced trauma"
+  },
+  {
+    "type": "para",
+    "raw": "Think of it as an <strong>upgrade path</strong> for teams that outgrow traditional static configs."
+  },
+  {
+    "type": "section",
+    "raw": "Final Thoughts"
+  },
+  {
+    "type": "para",
+    "raw": "For me, Dhall feels like that one tool we didn't know we needed until we try it."
+  },
+  {
+    "type": "para",
+    "raw": "It removes an entire class of problems duplication, invalid configs, inconsistent environments and replaces them with something predictable, composable, and safe."
+  },
+  {
+    "type": "para",
+    "raw": "If our project is small, Dhall might feel like overkill."
+  },
+  {
+    "type": "para",
+    "raw": "But the day our config becomes a large, interconnected system, Dhall starts paying for itself immediately."
+  },
+  {
+    "type": "para",
+    "raw": "And honestly, any tool that lets me avoid writing 400 lines of YAML is already a win."
+  },
+  {
+    "type": "tags",
+    "tags": ["dhall", "config", "yaml", "infrastructure", "devops", "programming"]
+  }
+]

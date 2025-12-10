@@ -35,8 +35,10 @@ export default function ReviewsHome() {
 		.filter(item => selectedFilter === 'all' || item.type === selectedFilter)
 		.sort((a, b) => {
 			if (!a.date || !b.date) return 0
-			const dateA = new Date(a.date.split('/').reverse().join('-'))
-			const dateB = new Date(b.date.split('/').reverse().join('-'))
+			const [dayA, monthA, yearA] = a.date.split('/')
+			const [dayB, monthB, yearB] = b.date.split('/')
+			const dateA = new Date(`20${yearA}-${monthA.padStart(2, '0')}-${dayA.padStart(2, '0')}`)
+			const dateB = new Date(`20${yearB}-${monthB.padStart(2, '0')}-${dayB.padStart(2, '0')}`)
 			return sortOrder === 'newest' 
 				? dateB.getTime() - dateA.getTime()
 				: dateA.getTime() - dateB.getTime()

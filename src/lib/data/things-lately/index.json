@@ -68,6 +68,12 @@
 	},
 	{
 		"type": "blog",
+		"title": "Dhall: The Config Language That Actually Scales With Us",
+		"slug": "dhall-the-config-language-that-actually-scales-with-us",
+		"date": "13/12/25"
+	},
+	{
+		"type": "blog",
 		"title": "The concept of getting \"vendor-locked\"!",
 		"slug": "the-concept-of-getting-vendor-locked",
 		"date": "27/09/25"

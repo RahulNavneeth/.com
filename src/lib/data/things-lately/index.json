@@ -1,6 +1,22 @@
 [
 	{
 		"type": "book",
+		"title": "Circe - Madeline Miller",
+		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1565909496i/35959740.jpg",
+		"slug": "circe-madeline-miller",
+		"description": "Not a big myth guy, but it does get exciting when you know the background",
+		"date": "15/12/25",
+		"rating": 3,
+		"popup": ["img", "description"]
+	},
+	{
+		"type": "blog",
+		"title": "Dhall: The Config Language That Actually Scales With Us",
+		"slug": "dhall-the-config-language-that-actually-scales-with-us",
+		"date": "13/12/25"
+	},
+	{
+		"type": "book",
 		"title": "Why We’re Getting Poorer: A Realist's Guide to the Economy and How We Can Fix it - Cahal Moran",
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1724374578i/217459693.jpg",
 		"slug": "why-we’re-getting-poorer:-a-realist's-guide-to-the-economy-and-how-we-can-fix-it---cahal-moran",
@@ -65,12 +81,6 @@
 		"date": "05/10/25",
 		"rating": 4,
 		"popup": ["img"]
-	},
-	{
-		"type": "blog",
-		"title": "Dhall: The Config Language That Actually Scales With Us",
-		"slug": "dhall-the-config-language-that-actually-scales-with-us",
-		"date": "13/12/25"
 	},
 	{
 		"type": "blog",

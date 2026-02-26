@@ -1,6 +1,16 @@
 [
 	{
 		"type": "book",
+		"title": "Dungeon Crawler Carl #1 - Matt Dinniman",
+		"img": "https://m.media-amazon.com/images/I/71agPjqADHL.jpg",
+		"slug": "dungeon-crawler-carl-#1-matt-dinniman",
+		"description": "Loved the book as much as that AI loved Carl’s feet. KILL KILL KILL",
+		"date": "21/02/26",
+		"rating": 5,
+		"popup": ["img", "description"]
+	},
+	{
+		"type": "book",
 		"title": "Circe - Madeline Miller",
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1565909496i/35959740.jpg",
 		"slug": "circe-madeline-miller",

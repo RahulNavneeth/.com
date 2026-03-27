@@ -1,7 +1,17 @@
 [
 	{
 		"type": "book",
-		"title": "Dungeon Crawler Carl #1 - Matt Dinniman",
+		"title": "Project Hail Mary — Andy Weir" ,
+		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1764703833i/54493401.jpg",
+		"slug": "project-hail-mary-andy-weir",
+		"description": "Goddamn… that made me tear up. That callback in the final paragraph hits hard — I hate it for Grace because he never gets to see what Earth became, and Earth never gets to know what he did for it. But at the same time, I love it, because he finally gets to do what he always wanted to do on Earth… just on Erid instead. Beyond praise. P.S. — PHM is the space meiazhagan.",
+		"date": "28/03/26",
+		"rating": 5,
+		"popup": ["img", "description"]
+	},
+	{
+		"type": "book",
+		"title": "Dungeon Crawler Carl #1 — Matt Dinniman",
 		"img": "https://m.media-amazon.com/images/I/71agPjqADHL.jpg",
 		"slug": "dungeon-crawler-carl-#1-matt-dinniman",
 		"description": "Loved the book as much as that AI loved Carl’s feet. KILL KILL KILL",
@@ -11,7 +21,7 @@
 	},
 	{
 		"type": "book",
-		"title": "Circe - Madeline Miller",
+		"title": "Circe — Madeline Miller",
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1565909496i/35959740.jpg",
 		"slug": "circe-madeline-miller",
 		"description": "Not a big myth guy, but it does get exciting when you know the background",
@@ -27,7 +37,7 @@
 	},
 	{
 		"type": "book",
-		"title": "Why We’re Getting Poorer: A Realist's Guide to the Economy and How We Can Fix it - Cahal Moran",
+		"title": "Why We’re Getting Poorer: A Realist's Guide to the Economy and How We Can Fix it — Cahal Moran",
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1724374578i/217459693.jpg",
 		"slug": "why-we’re-getting-poorer:-a-realist's-guide-to-the-economy-and-how-we-can-fix-it---cahal-moran",
 		"date": "05/12/25",
@@ -36,7 +46,7 @@
 	},
 	{
 		"type": "book",
-		"title": "Normal People - Sally Rooney",
+		"title": "Normal People — Sally Rooney",
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1571423190i/41057294.jpg",
 		"slug": "normal-people-sally-rooney",
 		"date": "26/11/25",
@@ -46,7 +56,7 @@
 	},
 	{
 		"type": "book",
-		"title": "People We Meet on Vacation - Emily Henry",
+		"title": "People We Meet on Vacation — Emily Henry",
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1748450140i/54985743.jpg",
 		"slug": "people-we-meet-on-vacation-emily-henry",
 		"date": "08/11/25",
@@ -56,7 +66,7 @@
 	},
 	{
 		"type": "book",
-		"title": "Amma - Perumal Murugan",
+		"title": "Amma — Perumal Murugan",
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1575474109i/49092851.jpg",
 		"slug": "amma-perumal-murugan",
 		"date": "03/11/25",
@@ -65,7 +75,7 @@
 	},
 	{
 		"type": "book",
-		"title": "Paper Heart - Cecelia Ahern",
+		"title": "Paper Heart — Cecelia Ahern",
 		"img": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1755635827l/224055418.jpg",
 		"slug": "paper-heart-cecelia-ahern",
 		"date": "12/10/25",
@@ -75,7 +85,7 @@
 	},
 	{
 		"type": "book",
-		"title": "The Subtle Art of Not Giving a F*ck - Mark Manson",
+		"title": "The Subtle Art of Not Giving a F*ck — Mark Manson",
 		"img": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1465761302i/28257707.jpg",
 		"slug": "the-subtle-art-of-not-giving-a-f*ck",
 		"date": "10/10/25",
@@ -85,7 +95,7 @@
 	},
 	{
 		"type": "book",
-		"title": "How to Hold Someone in Your Heart - Mizuki Tsujimura",
+		"title": "How to Hold Someone in Your Heart — Mizuki Tsujimura",
 		"img": "https://cdn.penguin.co.uk/dam-assets/books/9781529911435/9781529911435-jacket-large.jpg",
 		"slug": "how-to-hold-someone-in-your-heart",
 		"date": "05/10/25",

@@ -1,6 +1,16 @@
 [
 	{
 		"type": "book",
+		"title": "Better Than the Movies — Lynn Painter" ,
+		"img": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1618150545l/55710822.jpg",
+		"slug": "better-than-the-movies-lynn-painter",
+		"description": "I was speed reading it, and then \"She isn’t you. She. Isn’t. You.\" made me pause. think. smile.",
+		"date": "15/04/26",
+		"rating": 4,
+		"popup": ["img", "description"]
+	},
+	{
+		"type": "book",
 		"title": "Margo's Got Money Troubles — Rufi Thorpe" ,
 		"img": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1701221812i/199534613.jpg",
 		"slug": "margos-got-money-troubles-rufi-thorpe",
@@ -38,12 +48,6 @@
 		"date": "15/12/25",
 		"rating": 3,
 		"popup": ["img", "description"]
-	},
-	{
-		"type": "blog",
-		"title": "Dhall: The Config Language That Actually Scales With Us",
-		"slug": "dhall-the-config-language-that-actually-scales-with-us",
-		"date": "13/12/25"
 	},
 	{
 		"type": "book",
